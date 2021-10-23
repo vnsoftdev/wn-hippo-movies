@@ -1,0 +1,17 @@
+plugin:
+    name: 'sas.tmdb::lang.plugin.name'
+    description: 'sas.tmdb::lang.plugin.description'
+    author: sas
+    icon: oc-icon-list-alt
+    homepage: ''
+navigation:
+    sas.tmdb.main.menu:
+        label: 'sas.tmdb::lang.menu.main'
+        url: /sas/tmdb/movies
+        icon: icon-list-alt
+        permissions: {  }
+        sideMenu:
+            sas.tmdb.menu.movies:
+                label: 'sas.tmdb::lang.menu.movies'
+                url: sas/tmdb/movies
+                icon: icon-list-alt

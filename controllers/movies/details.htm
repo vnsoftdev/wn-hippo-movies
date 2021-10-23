@@ -1,0 +1,190 @@
+<style>
+div.header.large.first {
+    border-bottom: 1px solid var(--primaryColor);
+    background-position: right -200px top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('https://image.tmdb.org/t/p/w500/<?= $movie->backdrop_path ?>');
+}
+section.inner_content div.header div.single_column *{
+    color: #fff;
+}
+section.inner_content div.custom_bg {
+    background-image: linear-gradient(to right, rgba(13.33%, 12.16%, 14.90%, 1.00) 150px, rgba(13.33%, 12.16%, 14.90%, 0.84) 100%);
+}
+section.inner_content section.images {
+    display: flex;
+    flex-wrap: nowrap;
+}
+</style>
+<section class="inner_content tv_content backdrop poster">
+<div class="header large border first">
+    <div class="keyboard_s custom_bg">
+
+        <div class="single_column">
+            <section id="original_header"
+                class="images inner">
+                <div class="poster_wrapper false">
+                    <div class="poster">
+
+                        <div class="image_content backdrop">
+
+
+
+                            <img class="poster lazyload lazyloaded"
+                                data-src="https://image.tmdb.org/t/p/w500/<?= $movie->poster_path ?>"
+                                data-srcset="https://image.tmdb.org/t/p/w500/<?= $movie->poster_path ?> 1x, https://image.tmdb.org/t/p/w500/<?= $movie->poster_path ?> 2x"
+                                alt=""
+                                srcset="https://image.tmdb.org/t/p/w500/<?= $movie->poster_path ?> 1x, https://image.tmdb.org/t/p/w500/<?= $movie->poster_path ?> 2x"
+                                data-loaded="true"
+                                src="https://image.tmdb.org/t/p/w500/<?= $movie->poster_path ?>">
+
+
+
+                        </div>
+
+                        <div class="zoom">
+                            <a href="#"
+                                class="no_click"><span class="glyphicons_v2 fullscreen white"></span> Expand</a>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="header_poster_wrapper false">
+                    <section class="header poster">
+                        <div class="title ott_false"
+                            dir="auto">
+
+
+
+                            <h2 class="11">
+                                <a href="/tv/86227-walt-disney">
+                                    <?= $movie->title ?>
+                                </a>
+                                <span class="tag release_date">(
+                                    <?= $movie->release_date ?> )
+                                </span>
+                            </h2>
+
+
+                            <div class="facts">
+
+                                <span class="genres">
+
+                                    <a href="/genre/99-documentary/tv">
+                                        <?= array_reduce($movie->genres, function($oldValue, $element){
+                                        if ($oldValue===null) {
+                                            return $element->name;
+                                        }
+                                        return $oldValue . ", " . $element->name;
+                                    },null)?>
+                                    </a>
+
+                                </span>
+
+
+                                <span class="runtime">
+
+                                    <?= date('Hh:i', mktime(0,$movie->runtime )) ?>
+
+                                </span>
+
+                            </div>
+
+
+
+                        </div>
+                        <ul class="auto actions">
+
+
+
+                            <li class="chart">
+                                <div class="consensus details">
+                                    <div class="outer_ring">
+                                        <div class="user_score_chart"
+                                            data-percent="73.0"
+                                            data-track-color="#204529"
+                                            data-bar-color="#21d07a">
+                                            <div class="percent">
+
+                                                <span class="icon icon-r73"><?= $movie->vote_count ?> %</span>
+
+                                            </div>
+                                            <canvas style="height: 60px; width: 60px;"
+                                                width="120"
+                                                height="120"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text">User<br>Score</div>
+                            </li>
+
+
+
+                            <li class="tooltip use_tooltip list tooltip_hover"
+                                title="Add to list"
+                                data-role="tooltip">
+                                <a class="no_click"
+                                    href="#"><span class="glyphicons_v2 thumbnails-list white"></span></a>
+                            </li>
+
+
+                            <li class="tooltip use_tooltip"
+                                title="Mark as favorite"
+                                data-role="tooltip">
+                                <a id="favourite"
+                                    class="no_click add_to_account_list favourite"
+                                    href="#"><span class="glyphicons_v2 heart white false"></span></a>
+                            </li>
+
+
+                            <li class="tooltip use_tooltip"
+                                title="Add to your watchlist"
+                                data-role="tooltip">
+                                <a id="watchlist"
+                                    class="no_click add_to_account_list watchlist"
+                                    href="#"><span class="glyphicons_v2 bookmark white false"></span></a>
+                            </li>
+
+
+                            <li class="tooltip use_tooltip rating tooltip_hover"
+                                title="Rate It!"
+                                data-role="tooltip">
+                                <a id="rate_it"
+                                    class="no_click rating"
+                                    href="#"><span class="glyphicons_v2 star white false"></span></a>
+                            </li>
+
+                        </ul>
+
+                        <div class="header_info">
+
+
+                            <h3 dir="auto">Overview</h3>
+                            <div class="overview"
+                                dir="auto">
+
+                                <p>
+                                    <?= $movie->overview ?>
+                                </p>
+
+                            </div>
+
+
+                        </div>
+                    </section>
+                </div>
+            </section>
+
+            <div id="ott_offers_window"
+                class="hidden">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</section>

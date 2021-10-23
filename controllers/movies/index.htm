@@ -1,0 +1,115 @@
+<div class="container">
+    <div class="search_bar">
+        <section class="search show_search_true">
+            <div class="search-container">
+                <form id="search_form"
+                    action=""
+                    method="get"
+                    accept-charset="utf-8">
+                    <input type="text" placeholder="Search Videos.." name="search">
+                    <button type="submit"><i class="icon-search"></i></button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <div class="search_bar" style="padding: 5px 20px;">
+        <section class="search show_search_true">
+            <div class="search-container">
+                <h5>Search Result For: <span style="font-weight: bold; font-size: 26px;"><?= $search??'' ?></span></h5>
+            </div>
+        </section>
+    </div>
+
+
+    <?php
+    if(!empty($moviesPagination)) :
+    ?>
+    <div class="white_column search_bar">
+        <section class="panel">
+            <div class="search_results tv ">
+                <div class="results flex">
+
+                    <?php
+                    foreach($moviesPagination->results as $movie):
+                    ?>
+                    <div id="card_tv_5e764b85d18b2400177ecd0e"
+                        class="card v4 tight">
+                        <div class="wrapper">
+                            <div class="image">
+                                <div class="poster">
+                                    <a data-id="5e764b85d18b2400177ecd0e"
+                                        data-media-type="tv"
+                                        data-media-adult="false"
+                                        class="result"
+                                        href="/tv/100802">
+                                        <img loading="lazy"
+                                            class="poster"
+                                            src="https://image.tmdb.org/t/p/w500/<?= $movie->poster_path ?>" >
+
+
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="details">
+                                <div class="wrapper">
+                                    <div class="title">
+                                        <div>
+                                            <a data-id="5e764b85d18b2400177ecd0e"
+                                                data-media-type="tv"
+                                                data-media-adult="false"
+                                                class="result"
+                                                href="<?=\Backend::url('sas/tmdb/movies/details/'.$movie->id)?>">
+                                                <h2><?= $movie->title ?> </h2>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="overview">
+                                    <p><?= $movie->overview ?> </p>
+                                </div>
+                                <div class="grid-container">
+                                    <div>
+                                        <span class="icon-calendar"></span>
+                                        <?= $movie->release_date ?>
+                                    </div>
+                                    <div class="border"></div>
+                                    <div>
+                                        <span class="icon-clock-o"></span>
+
+                                    </div>
+                                    <div class="border"></div>
+
+                                    <div>
+                                        <span class="icon-eye"></span>
+                                        3
+                                    </div>
+                                    <div class="border"></div>
+                                    <div>
+                                        <span class="icon-youtube-play"></span>
+                                        3
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <?php
+                    endforeach;
+                    ?>
+                </div>
+                <div style="margin-top: 10px; display: flex; justify-content: end">
+                    <a style=" background: rgb(0, 136, 255)" href="?search=<?= $search?>&page=<?= $moviesPagination->page + 1?>" class="btn btn-success">Next <i style="font-weight: bold;"class="icon-angle-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <?php
+                    endif;
+                    ?>
+</div>
