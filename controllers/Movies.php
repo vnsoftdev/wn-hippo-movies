@@ -43,8 +43,6 @@ class Movies extends Controller
             }
         }
 
-
-
     }
 
     public function index()

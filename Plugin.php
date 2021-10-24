@@ -11,4 +11,14 @@ class Plugin extends PluginBase
     public function registerSettings()
     {
     }
+    public function registerReportWidgets()
+{
+    return [
+        'Sas\Tmdb\ReportWidgets\TmdbDiscover' => [
+            'label'   => 'Tmdb Discover',
+            'context' => 'dashboard',
+        ],
+
+    ];
+}
 }

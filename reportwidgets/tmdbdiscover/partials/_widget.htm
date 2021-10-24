@@ -1,0 +1,99 @@
+<div class="report-widget">
+    <h3><?= $title ?></h3>
+<div class="container">
+
+    <?php
+    if(!empty($movies)) :
+    ?>
+    <div class="white_column search_bar">
+        <section class="panel">
+            <div class="search_results tv ">
+                <div class="results flex">
+
+                    <?php
+                    foreach($movies as $movie):
+                    ?>
+                    <div id="card_tv_5e764b85d18b2400177ecd0e"
+                        class="card v4 tight">
+                        <div class="wrapper">
+                            <div class="image">
+                                <div class="poster">
+                                    <a data-id="5e764b85d18b2400177ecd0e"
+                                        data-media-type="tv"
+                                        data-media-adult="false"
+                                        class="result"
+                                        href="/tv/100802">
+                                        <img loading="lazy"
+                                            class="poster"
+                                            src="https://image.tmdb.org/t/p/w500/<?= $movie->poster_path ?>" >
+
+
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="details">
+                                <div class="wrapper">
+                                    <div class="title">
+                                        <div>
+                                            <a
+                                            data-control="popup"
+                                            data-handler="onDetails"
+                                            data-extra-data="id: <?= $movie->id ?> "                                          href="javascript:;"
+                                            class="result">
+                                                <h2><?= $movie->title ?> </h2>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="overview">
+                                    <p><?= $movie->overview ?> </p>
+                                </div>
+                                <div class="grid-container">
+                                    <div>
+                                        <span class="icon-calendar"></span>
+                                        <?= $movie->release_date ?>
+                                    </div>
+                                    <div class="border"></div>
+                                    <div>
+                                        <span class="icon-clock-o"></span>
+
+                                    </div>
+                                    <div class="border"></div>
+
+                                    <div>
+                                        <span class="icon-eye"></span>
+                                        3
+                                    </div>
+                                    <div class="border"></div>
+                                    <div>
+                                        <span class="icon-youtube-play"></span>
+                                        3
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <?php
+                    endforeach;
+                    ?>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+    <?php
+        else:
+        ?>
+        Please choose movie's category!
+        <?php
+                    endif;
+
+                    ?>
+</div>
+</div>
