@@ -25,7 +25,6 @@ class TmdbDiscover extends ReportWidgetBase
                     'by_popularity_child'  => 'Phim hay cho trẻ em',
                     'vote_average'         => 'Phim đánh giá cao',
                     'primary_release_year' => 'Phim hay trong năm 2021'
-
                 ],
             ],
             'limit' => [
@@ -34,13 +33,11 @@ class TmdbDiscover extends ReportWidgetBase
                 'type'              => 'string',
                 'validationPattern' => '^[0-9]*$',
                 'validationMessage' => 'Số phim hiển thị phải là số.'
-
             ]
         ];
     }
     public function render()
     {
-
         $client = new Client([
             // Base URI is used with relative requests
             'base_uri' => 'https://api.themoviedb.org/3/',
@@ -55,26 +52,29 @@ class TmdbDiscover extends ReportWidgetBase
         // calc page
         $pageCount = floor($limit / 20) + 1;
 
-
         if (!empty($mode)) {
             $params = [];
             if ($mode === 'by_popularity') {
+                $this->vars['title'] = 'Phim hay';
                 $params = [
                     'sort_by' => 'popularity.desc'
                 ];
             } else if ($mode === 'by_popularity_child') {
+                $this->vars['title'] = 'Phim hay cho trẻ em';
                 $params = [
                     'certification_country' => 'US',
                     'certification.lte' => 'G',
                     'sort_by' => 'popularity.desc'
                 ];
             } else if ($mode === 'vote_average') {
+                $this->vars['title'] = 'Phim được đánh giá cao';
                 $params = [
                     'certification_country' => 'US',
                     'certification.lte' => 'R',
                     'sort_by' => 'vote_average.desc'
                 ];
             } else if ($mode === 'primary_release_year') {
+                $this->vars['title'] = 'Phim hay trong năm 2021';
                 $params = [
                     'primary_release_year' => '2021',
                     'sort_by' => 'vote_average.desc'
@@ -97,11 +97,11 @@ class TmdbDiscover extends ReportWidgetBase
                 }
             }
             $this->vars['movies'] = array_slice($movies,0, $limit);
-
         }
 
         return $this->makePartial('widget');
     }
+
     public function onDetails()
     {
         $client = new Client([
@@ -129,15 +129,12 @@ class TmdbDiscover extends ReportWidgetBase
         }
 
         return $this->makePartial('details');
-
-
     }
 
     public function init()
     {
-
-        $this->addCss("/plugins/sas/tmdb/assets/css/style.css");
-        $this->addCss("/plugins/sas/tmdb/assets/css/lib.css");
-        $this->addCss("/plugins/sas/tmdb/assets/css/medium.css");
+        // $this->addCss("/plugins/sas/tmdb/assets/css/style.css");
+        // $this->addCss("/plugins/sas/tmdb/assets/css/lib.css");
+        // $this->addCss("/plugins/sas/tmdb/assets/css/medium.css");
     }
 }

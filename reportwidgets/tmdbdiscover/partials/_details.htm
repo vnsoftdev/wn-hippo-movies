@@ -16,7 +16,7 @@
         display: flex;
         flex-wrap: nowrap;
     }
-    </style>
+</style>
 
 
     <div class="modal-header">
@@ -38,9 +38,6 @@
                                 <div class="poster">
 
                                     <div class="image_content backdrop">
-
-
-
                                         <img class="poster lazyload lazyloaded"
                                             data-src="https://image.tmdb.org/t/p/w500/<?= $movie->poster_path ?>"
                                             data-srcset="https://image.tmdb.org/t/p/w500/<?= $movie->poster_path ?> 1x, https://image.tmdb.org/t/p/w500/<?= $movie->poster_path ?> 2x"
@@ -48,18 +45,9 @@
                                             srcset="https://image.tmdb.org/t/p/w500/<?= $movie->poster_path ?> 1x, https://image.tmdb.org/t/p/w500/<?= $movie->poster_path ?> 2x"
                                             data-loaded="true"
                                             src="https://image.tmdb.org/t/p/w500/<?= $movie->poster_path ?>">
-
-
-
-                                    </div>
-
-                                    <div class="zoom">
-                                        <a href="#"
-                                            class="no_click"><span class="glyphicons_v2 fullscreen white"></span> Expand</a>
                                     </div>
 
                                 </div>
-
 
                             </div>
 
@@ -67,8 +55,6 @@
                                 <section class="header poster">
                                     <div class="title ott_false"
                                         dir="auto">
-
-
 
                                         <h2 class="11">
                                             <a href="/tv/86227-walt-disney">
@@ -98,7 +84,7 @@
 
                                             <span class="runtime">
 
-                                                <?= date('Hh:i', mktime(0,$movie->runtime )) ?>
+                                                <?= date('H:i', mktime(0,$movie->runtime )) ?>
 
                                             </span>
 
@@ -132,47 +118,9 @@
                                             <div class="text">User<br>Score</div>
                                         </li>
 
-
-
-                                        <li class="tooltip use_tooltip list tooltip_hover"
-                                            title="Add to list"
-                                            data-role="tooltip">
-                                            <a class="no_click"
-                                                href="#"><span class="glyphicons_v2 thumbnails-list white"></span></a>
-                                        </li>
-
-
-                                        <li class="tooltip use_tooltip"
-                                            title="Mark as favorite"
-                                            data-role="tooltip">
-                                            <a id="favourite"
-                                                class="no_click add_to_account_list favourite"
-                                                href="#"><span class="glyphicons_v2 heart white false"></span></a>
-                                        </li>
-
-
-                                        <li class="tooltip use_tooltip"
-                                            title="Add to your watchlist"
-                                            data-role="tooltip">
-                                            <a id="watchlist"
-                                                class="no_click add_to_account_list watchlist"
-                                                href="#"><span class="glyphicons_v2 bookmark white false"></span></a>
-                                        </li>
-
-
-                                        <li class="tooltip use_tooltip rating tooltip_hover"
-                                            title="Rate It!"
-                                            data-role="tooltip">
-                                            <a id="rate_it"
-                                                class="no_click rating"
-                                                href="#"><span class="glyphicons_v2 star white false"></span></a>
-                                        </li>
-
                                     </ul>
 
                                     <div class="header_info">
-
-
                                         <h3 dir="auto">Overview</h3>
                                         <div class="overview"
                                             dir="auto">
@@ -182,24 +130,14 @@
                                             </p>
 
                                         </div>
-
-
                                     </div>
                                 </section>
                             </div>
                         </section>
-
-                        <div id="ott_offers_window"
-                            class="hidden">
-
-                        </div>
-
                     </div>
                 </div>
             </div>
             </section>
     </div>
     <div class="modal-footer">
-
     </div>
-
