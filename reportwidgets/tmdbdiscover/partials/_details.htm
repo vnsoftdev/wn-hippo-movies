@@ -85,7 +85,7 @@
                                             <span class="genres">
 
                                                 <a href="/genre/99-documentary/tv">
-                                                    <?= array_reduce($movie->genres, function($oldValue, $element){
+                                                    <?= $movie->genres->reduce(function($oldValue, $element){
                                                     if ($oldValue===null) {
                                                         return $element->name;
                                                     }
@@ -98,7 +98,7 @@
 
                                             <span class="runtime">
 
-                                                <?= date('Hh:i', mktime(0,$movie->runtime )) ?>
+                                                <?= date('H\h:i', mktime(0,$movie->runtime )) ?>
 
                                             </span>
 
@@ -120,7 +120,7 @@
                                                         data-bar-color="#21d07a">
                                                         <div class="percent">
 
-                                                            <span class="icon icon-r73"><?= $movie->vote_count ?> %</span>
+                                                            <span class="icon icon-r73"><?= $movie->vote_average * 10 ?> %</span>
 
                                                         </div>
                                                         <canvas style="height: 60px; width: 60px;"

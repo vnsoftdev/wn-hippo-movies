@@ -75,7 +75,7 @@ section.inner_content section.images {
                                 <span class="genres">
 
                                     <a href="/genre/99-documentary/tv">
-                                        <?= array_reduce($movie->genres, function($oldValue, $element){
+                                        <?= $movie->genres->reduce(function($oldValue, $element){
                                         if ($oldValue===null) {
                                             return $element->name;
                                         }

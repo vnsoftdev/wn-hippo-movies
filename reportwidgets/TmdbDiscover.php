@@ -4,6 +4,7 @@ namespace Sas\Tmdb\ReportWidgets;
 
 use Backend\Classes\ReportWidgetBase;
 use GuzzleHttp\Client;
+use Sas\Tmdb\Classes\Helper;
 
 class TmdbDiscover extends ReportWidgetBase
 {
@@ -104,34 +105,20 @@ class TmdbDiscover extends ReportWidgetBase
     }
     public function onDetails()
     {
-        $client = new Client([
-            // Base URI is used with relative requests
-            'base_uri' => 'https://api.themoviedb.org/3/',
-            // You can set any number of default request options.
-            'timeout'  => 2.0,
-        ]);
+
         $params = \Input::all();
         $id = $params['id'];
         if(!empty($id)){
 
-            $response = $client->request('GET', 'movie/'.$id, [
-                'query' => [
-                    'api_key' => '4dbbca06792a6ea04fb494a15afffcb8',
-                ],
-            ]);
-
-            $code = $response->getStatusCode();
-            if ($code == 200) {
-                $body = $response->getBody();
-                $movie = json_decode($body);
-                $this->vars['movie'] = $movie;
-            }
+            $movie = Helper::viewMovie($id);
+            $this->vars['movie'] = $movie;
         }
 
         return $this->makePartial('details');
 
 
     }
+
 
     public function init()
     {

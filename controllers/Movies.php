@@ -3,6 +3,8 @@
 use Backend\Classes\Controller;
 use BackendMenu;
 use GuzzleHttp\Client;
+use Sas\Tmdb\Classes\Helper;
+
 
 class Movies extends Controller
 {
@@ -29,18 +31,8 @@ class Movies extends Controller
     {
         if(!empty($id)){
 
-            $response = $this->client->request('GET', 'movie/'.$id, [
-                'query' => [
-                    'api_key' => '4dbbca06792a6ea04fb494a15afffcb8',
-                ],
-            ]);
-
-            $code = $response->getStatusCode();
-            if ($code == 200) {
-                $body = $response->getBody();
-                $movie = json_decode($body);
-                $this->vars['movie'] = $movie;
-            }
+            $movie = Helper::viewMovie($id);
+            $this->vars['movie'] = $movie;
         }
 
     }
