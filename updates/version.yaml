@@ -1,2 +1,14 @@
 1.0.1:
-    - Initialize plugin.
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table sas_tmdb_movies'
+    - builder_table_create_sas_tmdb_movies.php
+1.0.3:
+    - 'Created table sas_tmdb_genres'
+    - builder_table_create_sas_tmdb_genres.php
+1.0.4:
+    - 'Created table sas_tmdb_genre_movie'
+    - builder_table_create_sas_tmdb_genre_movie.php
+1.0.5:
+    - 'Updated table sas_tmdb_genre_movie'
+    - builder_table_update_sas_tmdb_genre_movie.php
