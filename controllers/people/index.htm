@@ -1,0 +1,97 @@
+<style>
+    .profile {
+        width: 235px;
+        margin: 10px;
+    }
+
+</style>
+<div class="container">
+    <div class="search_bar">
+        <section class="search show_search_true">
+            <div class="search-container">
+                <form id="search_form"
+                    action=""
+                    method="get"
+                    accept-charset="utf-8">
+                    <input type="text"
+                        placeholder="Search People.."
+                        name="search">
+                    <button type="submit"><i class="icon-search"></i></button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <div class="search_bar"
+        style="padding: 5px 20px;">
+        <section class="search show_search_true">
+            <div class="search-container">
+                <h5>Search Result For: <span style="font-weight: bold; font-size: 26px;">
+                        <?= $search??'' ?>
+                    </span></h5>
+            </div>
+        </section>
+    </div>
+    <?php
+    if(!empty($peoplePagination)) :
+    ?>
+    <div class="row">
+    <div class="white_column search_bar">
+        <section class="panel">
+            <div class="search_results tv ">
+                <div class="results flex">
+
+                    <?php
+                    foreach($peoplePagination->results as $person):
+                    ?>
+                    <div class="item profile card  col-6 col-sm-2">
+                        <div class="image_content">
+                            <a id="person_1039523"
+                                class="result"
+                                href=""
+                                title="<?= $person->name ?>"
+                                alt="">
+                                <img loading="lazy"
+                                    class="profile"
+                                    src="https://image.tmdb.org/t/p/w235_and_h235_face/<?= $person->profile_path ?>">
+
+                            </a>
+                        </div>
+                        <div class="meta">
+                            <p class="name"><a href="<?=\Backend::url('sas/tmdb/people/details/'.$person->id)?>">
+                                    <?= $person->name ?>
+                                </a></p>
+                            <p class="sub">
+                                <?= array_reduce($person->known_for, function($oldValue, $element){
+                                    $name="";
+                                    if(property_exists($element,'name')) {
+                                        $name =  $element->name;
+                                    } else if (property_exists($element,'title')) {
+                                        $name =  $element->title;
+                                    }
+                                    if ($oldValue===null) {
+                                        return $name;
+                                    }
+                                    return $oldValue . ", " . $name;
+                                },null)?>
+                            </p>
+                        </div>
+                    </div>
+                    <?php
+                    endforeach;
+                    ?>
+                </div>
+                <div style="margin-top: 10px; display: flex; justify-content: end">
+                    <a style=" background: rgb(0, 136, 255)"
+                        href="?search=<?= $search?>&page=<?= $peoplePagination->page + 1?>"
+                        class="btn btn-success">Next <i style="font-weight: bold;"
+                            class="icon-angle-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <?php
+                    endif;
+                    ?>
+</div>

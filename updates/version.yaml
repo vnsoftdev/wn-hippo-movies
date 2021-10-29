@@ -12,3 +12,24 @@
 1.0.5:
     - 'Updated table sas_tmdb_genre_movie'
     - builder_table_update_sas_tmdb_genre_movie.php
+1.0.6:
+    - 'Created table sas_tmdb_people'
+    - builder_table_create_sas_tmdb_people.php
+1.0.7:
+    - 'Created table sas_tmdb_people_movie_know_for'
+    - builder_table_create_sas_tmdb_people_movie_know_for.php
+1.0.8:
+    - 'Updated table sas_tmdb_people_movie_know_for'
+    - builder_table_update_sas_tmdb_people_movie_known_for.php
+1.0.9:
+    - 'Updated table sas_tmdb_people'
+    - builder_table_update_sas_tmdb_people.php
+1.0.10:
+    - 'Updated table sas_tmdb_people'
+    - builder_table_update_sas_tmdb_people_2.php
+1.0.11:
+    - 'Updated table sas_tmdb_people'
+    - builder_table_update_sas_tmdb_people_3.php
+1.0.12:
+    - 'Updated table sas_tmdb_people'
+    - builder_table_update_sas_tmdb_people_4.php

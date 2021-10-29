@@ -1,0 +1,93 @@
+<style>
+    section.images div.image_content {
+    height: auto;
+}
+ .content_wrapper {
+     display: flex;
+ }
+ div.white_column {
+    max-width: 920px;
+    width: calc(100vw - 80px - 300px);
+}
+</style>
+<div class="content_wrapper">
+    <div class="grey_column">
+        <section id="original_header"
+            class="images inner">
+            <div class="poster_wrapper profile">
+                <div class="image_content">
+                    <img class="profile lazyload lazyloaded"
+                        src="https://image.tmdb.org/t/p/w235_and_h235_face/<?= $person->profile_path ?>">
+
+        </section>
+
+
+
+        <div class="column">
+            <section class="full_wrapper facts left_column">
+
+                <div class="social_links">
+
+
+
+                    <div>
+                        <a class="social_link"
+                            title="Visit Instagram"
+                            href="https://instagram.com/prideofgypsies/"
+                            target="_blank"
+                            rel="noopener"
+                            data-role="tooltip"><span class="glyphicons_v2 instagram"></span></a>
+                    </div>
+
+
+                </div>
+
+
+                <h3><bdi>Personal Info</bdi></h3>
+
+                <section>
+                    <p><strong><bdi>Known For</bdi></strong> <?= $person->known_for_department ?></p>
+                    <p><strong><bdi>Gender</bdi></strong> <?= $person->gender===1 ? "Male":"Female"?></p>
+
+                    <p class="full">
+                        <strong><bdi>Birthday</bdi></strong>
+                        <?= $person->birthday?>
+                    </p>
+                    <p class="full"><strong><bdi>Place of Birth</bdi></strong><?= $person->place_of_birth?></p>
+
+
+                </section>
+
+            </section>
+        </div>
+    </div>
+
+    <div>
+        <div class="white_column">
+
+            <section>
+                <div class="title"
+                    dir="auto">
+                    <h2 class="title"><a href="/person/117642-jason-momoa"></a></h2>
+                </div>
+            </section>
+
+
+            <section class="full_wrapper">
+                <h3 dir="auto">Biography</h3>
+                <div dir="auto"
+                    class="biography true">
+
+                    <div class="content fade_text">
+                        <div class="text initial">
+                            <p> <?= $person->biography?></p>
+                        </div>
+                        <div class="read_more hide"><a class="read_more no_click"
+                                href="#">Read More <span class="glyphicons_v2 chevron-right"></span></a></div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

@@ -41,6 +41,12 @@ class Movie extends Model
             'table'    => 'sas_tmdb_genre_movie',
             'key'      => 'movie_id',
             'otherKey' => 'genre_id'
+        ],
+        'people' => [
+            \Sas\Tmdb\Models\Person::class,
+            'table'    => 'sas_tmdb_people_movie_know_for',
+            'key'      => 'movie_id',
+            'otherKey' => 'person_id'
         ]
     ];
 }

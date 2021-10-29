@@ -1,6 +1,7 @@
 <?php namespace Sas\Tmdb\Classes;
 use Sas\Tmdb\Models\Genre;
 use Sas\Tmdb\Models\Movie;
+use Sas\Tmdb\Models\Person;
 use GuzzleHttp\Client;
 
 class Helper
@@ -61,6 +62,68 @@ class Helper
                 }
                 $movie->reload();
                 return $movie;
+            }
+
+        } else {
+        return $tmdb_movie_id;
+        }
+
+    }
+    public static function viewPeople($tmdb_id)
+    {
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'https://api.themoviedb.org/3/',
+            // You can set any number of default request options.
+            'timeout'  => 2.0,
+        ]);
+
+        $tmdb_movie_id = Movie::where('tmdb_id', $tmdb_id)->first();
+
+        if($tmdb_movie_id==null) {
+            $response = $client->request('GET', 'person/'.$tmdb_id, [
+                'query' => [
+                    'api_key' => '4dbbca06792a6ea04fb494a15afffcb8',
+                ],
+            ]);
+
+            $code = $response->getStatusCode();
+            if ($code == 200) {
+                $body = $response->getBody();
+                $api_person = json_decode($body);
+
+                $person = Person::create(
+                    ['name'               => $api_person->name,
+                    'tmdb_id'             => $api_person->id,
+                    'biography'           => $api_person->biography,
+                    'known_for_department'=> $api_person->known_for_department,
+                    'gender'              => $api_person->gender,
+                    'popularity'          => $api_person->popularity,
+                    'profile_path'        => $api_person->profile_path,
+                    'place_of_birth'      => $api_person->place_of_birth,
+                    ]
+                );
+                $person->save();
+
+                // $api_genres = $api_movie->genres;
+
+                // foreach($api_genres as $g) {
+                //     $genres_tmdb_id = Genre::where('tmdb_id', $g->id)->first();
+                //     if($genres_tmdb_id == null) {
+                //         $genre = Genre::create(
+                //             [
+                //                 'tmdb_id'=> $g->id,
+                //                 'name'=> $g->name,
+                //             ]
+                //         );
+                //         $genre->save();
+                //         $movie->genres()->attach($genre->id);
+                //     } else {
+                //         $movie->genres()->attach($genres_tmdb_id->id);
+                //     }
+                // }
+                $person->reload();
+                return $person;
             }
 
         } else {

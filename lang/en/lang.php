@@ -6,5 +6,6 @@
     'menu' => [
         'main' => 'TMDB',
         'movies' => 'Movies',
+        'people' => 'People',
     ],
 ];

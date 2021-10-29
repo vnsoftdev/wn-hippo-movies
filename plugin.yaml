@@ -15,3 +15,7 @@ navigation:
                 label: 'sas.tmdb::lang.menu.movies'
                 url: sas/tmdb/movies
                 icon: icon-list-alt
+            sas.tmdb.menu.people:
+                label: 'sas.tmdb::lang.menu.people'
+                url: /sas/tmdb/people
+                icon: icon-smile-o
