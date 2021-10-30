@@ -78,9 +78,9 @@ class Helper
             'timeout'  => 2.0,
         ]);
 
-        $tmdb_movie_id = Movie::where('tmdb_id', $tmdb_id)->first();
+        $tmdb_person_id = Movie::where('tmdb_id', $tmdb_id)->first();
 
-        if($tmdb_movie_id==null) {
+        if($tmdb_person_id==null) {
             $response = $client->request('GET', 'person/'.$tmdb_id, [
                 'query' => [
                     'api_key' => '4dbbca06792a6ea04fb494a15afffcb8',
@@ -105,30 +105,46 @@ class Helper
                 );
                 $person->save();
 
-                // $api_genres = $api_movie->genres;
+                //save movies
+                $response = $client->request('GET', 'person/'.$tmdb_id. '/combined_credits', [
+                    'query' => [
+                        'api_key' => '4dbbca06792a6ea04fb494a15afffcb8',
+                    ],
+                ]);
 
-                // foreach($api_genres as $g) {
-                //     $genres_tmdb_id = Genre::where('tmdb_id', $g->id)->first();
-                //     if($genres_tmdb_id == null) {
-                //         $genre = Genre::create(
-                //             [
-                //                 'tmdb_id'=> $g->id,
-                //                 'name'=> $g->name,
-                //             ]
-                //         );
-                //         $genre->save();
-                //         $movie->genres()->attach($genre->id);
-                //     } else {
-                //         $movie->genres()->attach($genres_tmdb_id->id);
-                //     }
-                // }
+                $code = $response->getStatusCode();
+                if ($code == 200) {
+                    $body = $response->getBody();
+                    $combined_credits = json_decode($body);
+                    $cast =   $combined_credits->cast;
+
+                    foreach ($cast as $c) {
+                        $tmdb_movie = Movie::where('tmdb_id', $c->id)->first();
+                        if($tmdb_movie==null) {
+                            $movie = Movie::create(
+                                ['title' => $c->title?? $c->name,
+                                'tmdb_id' => $c->id,
+                                'overview'=> $c->overview,
+                                'release_date'=> $c->release_date??null,
+                                'vote_average' => $c->vote_average,
+                                'vote_count'=> $c->vote_count,
+                                'poster_path'=>         $c->poster_path,
+                                'backdrop_path'=> $c->backdrop_path,
+                                ]
+                            );
+                            $movie->save();
+                            $person->known_for()->attach($movie->id);
+                        } else {
+                            $person->known_for()->attach($tmdb_movie->id);
+                            }
+                        }
+                    }
+                }
                 $person->reload();
                 return $person;
             }
+            return  $tmdb_person_id ;
 
-        } else {
-        return $tmdb_movie_id;
-        }
 
     }
 }

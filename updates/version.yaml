@@ -33,3 +33,12 @@
 1.0.12:
     - 'Updated table sas_tmdb_people'
     - builder_table_update_sas_tmdb_people_4.php
+1.0.13:
+    - 'Updated table sas_tmdb_people'
+    - builder_table_update_sas_tmdb_people_5.php
+1.0.14:
+    - 'Updated table sas_tmdb_movies'
+    - builder_table_update_sas_tmdb_movies.php
+1.0.15:
+    - 'Updated table sas_tmdb_movies'
+    - builder_table_update_sas_tmdb_movies_2.php

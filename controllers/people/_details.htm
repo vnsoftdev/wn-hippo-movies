@@ -1,0 +1,89 @@
+<style>
+    section.images div.image_content {
+        height: auto;
+    }
+
+
+</style>
+<?php
+        if (!empty($person)):
+        ?>
+<div class="flex-layout-row white_column search_bar">
+    <div class="">
+        <section class="images">
+            <div class="">
+                <div class="image_content">
+                    <img class="profile lazyload lazyloaded"
+                        src="https://image.tmdb.org/t/p/w235_and_h235_face/<?= $person->profile_path ?>">
+                </div>
+            </div>
+        </section>
+
+        <div class="column">
+            <section class="">
+                <h3><bdi>Personal Info</bdi></h3>
+                <section>
+                    <p><strong><bdi>Known For</bdi></strong>
+                        <?= $person->known_for_department ?>
+                    </p>
+                    <p><strong><bdi>Gender</bdi></strong>
+                        <?= $person->gender===1 ? "Male":"Female"?>
+                    </p>
+                    <p class="full">
+                        <strong><bdi>Birthday</bdi></strong>
+                        <?= $person->birthday?>
+                    </p>
+                    <p class="full"><strong><bdi>Place of Birth</bdi></strong>
+                        <?= $person->place_of_birth?>
+                    </p>
+                </section>
+            </section>
+        </div>
+    </div>
+
+    <div>
+        <div class="white_column">
+            <section class="full_wrapper">
+                <h3 dir="auto">Biography</h3>
+                <div dir="auto"
+                    class="biography true">
+                    <div class="content fade_text">
+                        <div class="text initial">
+                            <p>
+                                <?= $person->biography?>
+                            </p>
+                        </div>
+                        <div class="read_more hide"><a class="read_more no_click"
+                                href="#">Read More <span class="glyphicons_v2 chevron-right"></span></a></div>
+                    </div>
+                </div>
+            </section>
+            <section class="full_wrapper">
+                <?php if(($person->known_for !==null)) : ?>
+                        <div class="row">
+                            <?php foreach($person->known_for as $movie): ?>
+                                <div class="col-6 col-sm-2">
+                                    <a
+                                        data-control="popup"
+                                        data-handler="onDetails"
+                                        data-extra-data="id: <?= $movie->id ?>"
+                                        href="javascript:;"
+                                        data-size="adaptive">
+                                        <img loading="lazy"
+                                            class="img-responsive"
+                                            src="https://image.tmdb.org/t/p/w500/<?= $movie->poster_path ?>" />
+                                    </a>
+                                    <p>
+                                        <?= $movie->title   ?>
+                                    </p>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                <?php endif; ?>
+            </section>
+        </div>
+    </div>
+</div>
+<?php
+            endif;
+        ?>

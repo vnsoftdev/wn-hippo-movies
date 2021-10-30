@@ -1,4 +1,6 @@
-<?php namespace Sas\Tmdb\Controllers;
+<?php
+
+namespace Sas\Tmdb\Controllers;
 
 use Backend\Classes\Controller;
 use BackendMenu;
@@ -8,7 +10,7 @@ use Sas\Tmdb\Classes\Helper;
 
 class People extends Controller
 {
-    public $implement = [    ];
+    public $implement = [];
     private $client;
 
 
@@ -21,24 +23,24 @@ class People extends Controller
             'timeout'  => 2.0,
         ]);
         $this->addCss("/plugins/sas/tmdb/assets/css/style.css");
-        $this->addCss("/plugins/sas/tmdb/assets/css/lib.css");
-        $this->addCss("/plugins/sas/tmdb/assets/css/medium.css");
+        // $this->addCss("/plugins/sas/tmdb/assets/css/lib.css");
+        // $this->addCss("/plugins/sas/tmdb/assets/css/medium.css");
         parent::__construct();
         BackendMenu::setContext('Sas.Tmdb', 'sas.tmdb.main.menu', 'sas.tmdb.menu.people');
     }
     public function index()
     {
         $params = \Input::all();
-        if(!empty($params['search'])){
+        if (!empty($params['search'])) {
             $search = $params['search'];
-            $page = $params['page']?? 1;
+            $page = $params['page'] ?? 1;
             $this->vars['search'] = $search;
 
             $response = $this->client->request('GET', 'search/person', [
                 'query' => [
                     'api_key' => '4dbbca06792a6ea04fb494a15afffcb8',
                     'query' => $search,
-                    'page'=>$page,
+                    'page' => $page,
                 ],
             ]);
 
@@ -52,11 +54,23 @@ class People extends Controller
     }
     public function details($id)
     {
-        if(!empty($id)){
+        if (!empty($id)) {
 
             $person = Helper::viewPeople($id);
             $this->vars['person'] = $person;
         }
+    }
+    function onRefreshDetails()
+    {
+        $params = \Input::all();
+        if (!empty($params['id'])) {
+            $person = Helper::viewPeople($params['id']);
 
+            return [
+                '#partial' => $this->makePartial('details',[
+                'person' => $person,
+                ])
+            ];
+        }
     }
 }

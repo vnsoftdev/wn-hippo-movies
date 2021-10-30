@@ -36,32 +36,42 @@
     if(!empty($peoplePagination)) :
     ?>
     <div class="row">
-    <div class="white_column search_bar">
-        <section class="panel">
-            <div class="search_results tv ">
-                <div class="results flex">
-
-                    <?php
+        <div class="white_column search_bar">
+            <section class="panel">
+                <div class="search_results tv ">
+                    <div class="row results flex">
+                        <?php
                     foreach($peoplePagination->results as $person):
                     ?>
-                    <div class="item profile card  col-6 col-sm-2">
-                        <div class="image_content">
-                            <a id="person_1039523"
-                                class="result"
-                                href=""
-                                title="<?= $person->name ?>"
-                                alt="">
-                                <img loading="lazy"
-                                    class="profile"
-                                    src="https://image.tmdb.org/t/p/w235_and_h235_face/<?= $person->profile_path ?>">
+                        <div class="profile  col-6 col-sm-2">
+                            <div class="image_content">
+                                <a>
+                                    <img loading="lazy"
+                                        class="profile"
+                                        <?php
+                                        if(($person->profile_path!==null)):
+                                    ?>
+                                    src="https://image.tmdb.org/t/p/w235_and_h235_face<?= $person->profile_path ?>">
+                                    <?php
+                                    else:
+                                    ?>
+                                    src="/plugins/sas/tmdb/assets/img/avatar.png">
+                                    <?php
+                                    endif;
+                                    ?>
 
-                            </a>
-                        </div>
-                        <div class="meta">
-                            <p class="name"><a href="<?=\Backend::url('sas/tmdb/people/details/'.$person->id)?>">
-                                    <?= $person->name ?>
-                                </a></p>
-                            <p class="sub">
+                                </a>
+                            </div>
+                            <div class="">
+                                <p class="name">
+                                    <a  data-request="onRefreshDetails"
+                                        data-request-update="details: '#partial'"
+                                        href="javascript:;"
+                                        data-request-data="id: <?= $person->id?>"
+                                        >
+                                        <?= $person->name ?>
+                                    </a></p>
+                                <!-- <p class="sub">
                                 <?= array_reduce($person->known_for, function($oldValue, $element){
                                     $name="";
                                     if(property_exists($element,'name')) {
@@ -74,24 +84,34 @@
                                     }
                                     return $oldValue . ", " . $name;
                                 },null)?>
-                            </p>
+                            </p> -->
+                            </div>
                         </div>
-                    </div>
-                    <?php
+                        <?php
                     endforeach;
                     ?>
+                    </div>
+                    <div class="row"
+                        style="margin-top: 10px; display: flex; justify-content: end">
+                        <a style=" background: rgb(0, 136, 255)"
+                            href="?search=<?= $search?>&page=<?= $peoplePagination->page + 1?>"
+                            class="btn btn-success">Next <i style="font-weight: bold;"
+                                class="icon-angle-right"></i></a>
+                    </div>
                 </div>
-                <div style="margin-top: 10px; display: flex; justify-content: end">
-                    <a style=" background: rgb(0, 136, 255)"
-                        href="?search=<?= $search?>&page=<?= $peoplePagination->page + 1?>"
-                        class="btn btn-success">Next <i style="font-weight: bold;"
-                            class="icon-angle-right"></i></a>
-                </div>
-            </div>
-        </section>
+            </section>
+
+        </div>
+        <?php
+        endif;
+    ?>
+    <div id="partial" >
+        {% partial "details" %}
+    </div>
 
     </div>
-    <?php
-                    endif;
-                    ?>
-</div>
+    <script>
+        $.request('onRefreshDetails', {
+            update: { details: '#partial' }
+        })
+    </script>

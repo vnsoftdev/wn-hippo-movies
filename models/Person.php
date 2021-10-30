@@ -41,7 +41,7 @@ class Person extends Model
     public $belongsToMany = [
         'known_for' => [
             \Sas\Tmdb\Models\Movie::class,
-            'table'    => 'sas_tmdb_people_movie_know_for',
+            'table'    => 'sas_tmdb_people_movie_known_for',
             'key'      => 'movie_id',
             'otherKey' => 'person_id'
         ]

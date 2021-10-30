@@ -44,7 +44,7 @@ class Movie extends Model
         ],
         'people' => [
             \Sas\Tmdb\Models\Person::class,
-            'table'    => 'sas_tmdb_people_movie_know_for',
+            'table'    => 'sas_tmdb_people_movie_known_for',
             'key'      => 'movie_id',
             'otherKey' => 'person_id'
         ]
