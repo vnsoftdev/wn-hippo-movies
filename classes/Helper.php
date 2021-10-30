@@ -78,7 +78,7 @@ class Helper
             'timeout'  => 2.0,
         ]);
 
-        $tmdb_person_id = Movie::where('tmdb_id', $tmdb_id)->first();
+        $tmdb_person_id = Person::where('tmdb_id', $tmdb_id)->first();
 
         if($tmdb_person_id==null) {
             $response = $client->request('GET', 'person/'.$tmdb_id, [
